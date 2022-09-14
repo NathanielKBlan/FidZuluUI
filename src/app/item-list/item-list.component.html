@@ -1,0 +1,42 @@
+<nav>
+    <button (click)="getBikes()">Bikes</button>
+    <button (click)="getBooks()">Books</button>
+    <button (click)="getDVDs()">DVDs</button>
+    <button (click)="getFoods()">Food</button>
+    <button (click)="getLaptops()">Laptops</button>
+    <button (click)="getToys()">Toys</button>
+  </nav>
+  
+  <section>
+    <div *ngIf="!serviceErrorMessage">
+  
+      <table *ngIf="items.length">
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>location</th>
+            <th>prize</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td>{{ item.name }}</td>
+            <td>{{ item.location }}</td>
+            <td class="numeric-data">{{ item.prize | currency: "USD" }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <div *ngIf="!items.length">
+        <span id="no-items-message">
+            We currently have no items in our inventory.
+        </span>
+      </div>
+    </div>
+  
+    <div *ngIf="serviceErrorMessage">
+      <span id="service-error-message">
+        There was a problem getting the inventory. Please try again later.
+      </span>
+    </div>
+  </section>
